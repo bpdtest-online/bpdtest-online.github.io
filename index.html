@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Take our comprehensive BPD test online. Learn about Borderline Personality Disorder symptoms, diagnosis criteria, and assessment methods. Free, confidential, and expert-backed BPD screening tool.">
+    <title>BPD Test Online | Free Borderline Personality Disorder Assessment</title>
+    <style>
+        :root {
+            --primary-color: #4A90E2;
+            --secondary-color: #F5F8FA;
+            --text-color: #2C3E50;
+            --light-text: #707070;
+            --accent-color: #E74C3C;
+            --success-color: #27AE60;
+            --border-color: #E1E8ED;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: var(--secondary-color);
+            padding: 2rem 0;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--secondary-color), white);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--light-text);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            background: var(--secondary-color);
+            border-radius: 10px;
+        }
+
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 2rem;
+            transition: background 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background: #357ABD;
+        }
+
+        .disclaimer {
+            background: #FFF3F3;
+            padding: 1rem;
+            border-left: 4px solid var(--accent-color);
+            margin: 2rem 0;
+        }
+
+        /* Test Section Styles */
+        #test-section {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .instructions {
+            background: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .question-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .question-card.active {
+            display: block;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--secondary-color);
+            border-radius: 4px;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--primary-color);
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
+        .options {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .option-btn {
+            padding: 0.8rem 2rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 5px;
+            background: white;
+            color: var(--primary-color);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        .option-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .results {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .results h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .score {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .interpretation {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        footer {
+            background: var(--secondary-color);
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        ul {
+            list-style-position: inside;
+            margin: 1rem 0;
+        }
+
+        ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .options {
+                flex-direction: column;
+            }
+            
+            .option-btn {
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo" onclick="showLandingPage()">BPDTest.online</div>
+        </nav>
+    </header>
+
+    <main>
+        <div id="landing-content">
+            <section class="hero">
+                <div class="container">
+                    <h1>Free Online BPD Test</h1>
+                    <p>Take our comprehensive Borderline Personality Disorder (BPD) screening test to better understand your symptoms and mental health</p>
+                    <button class="cta-button" onclick="startTest()">Take the BPD Test Now</button>
+                </div>
+            </section>
+
+            <section class="container">
+                <h2>Understanding the BPD Test</h2>
+                <p>The BPD test is a screening tool designed to assess symptoms associated with Borderline Personality Disorder. This online assessment helps individuals identify potential signs of BPD and determine whether professional evaluation might be beneficial.</p>
+                
+                <div class="disclaimer">
+                    <strong>Important Notice:</strong> This BPD test is for screening purposes only and is not a diagnostic tool. Only a licensed mental health professional can provide an official BPD diagnosis through clinical evaluation.
+                </div>
+
+                <div class="features">
+                    <div class="feature-card">
+                        <h3>Scientific Basis</h3>
+                        <p>Our BPD test is based on the McLean Screening Instrument for BPD (MSI-BPD) and diagnostic criteria outlined in the DSM-5.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Comprehensive Assessment</h3>
+                        <p>The test evaluates key criteria of BPD, including emotional instability, relationship patterns, self-image issues, and impulsivity.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Immediate Results</h3>
+                        <p>After completing the BPD test, you'll receive instant feedback about your symptom patterns and guidance on next steps.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="container">
+                <h2>What Does the BPD Test Measure?</h2>
+                <p>The test assesses various aspects of personality and behavior patterns commonly associated with BPD:</p>
+                <ul>
+                    <li>Emotional instability and mood swings</li>
+                    <li>Fear of abandonment</li>
+                    <li>Self-image and identity issues</li>
+                    <li>Impulsive behaviors</li>
+                    <li>Thoughts of self-harm</li>
+                    <li>Chronic feelings of emptiness</li>
+                    <li>Anger management</li>
+                    <li>Stress-related symptoms</li>
+                </ul>
+            </section>
+        </div>
+
+        <div id="test-section">
+            <div class="instructions">
+                <h2>BPD Screening Test</h2>
+                <p>Please answer each question based on your experiences over the past year. Select "Yes" if the statement applies to you, or "No" if it doesn't.</p>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+
+            <div id="questions-container">
+                <!-- Questions will be dynamically inserted here -->
+            </div>
+
+            <div class="results" id="results">
+                <h2>Your Test Results</h2>
+                <div class="score" id="score"></div>
+                <div class="interpretation" id="interpretation"></div>
+                <div class="disclaimer">
+                    <strong>Important Notice:</strong>
+                    <p>This screening test is not a diagnostic tool. The results should be discussed with a qualified mental health professional who can provide a comprehensive evaluation.</p>
+                </div>
+                <button class="cta-button" onclick="showLandingPage()">Return to Home</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 BPDTest.online - Free Online Borderline Personality Disorder Screening Tool</p>
+            <p><small>Disclaimer: This BPD test is for informational purposes only and should not be used as a substitute for professional medical advice, diagnosis, or treatment.</small></p>
+        </div>
+    </footer>
+
+    <script>
+        const questions = [
+            {
+                id: 1,
+                text: "Have you often become frantic when you thought that someone you really cared about was going to leave you?"
+            },
+            {
+                id: 2,
+                text: "Do your relationships with people you really care about have lots of extreme ups and downs?"
+            },
+            {
+                id: 3,
+                text: "Have you all of a sudden changed your sense of who you are and where you are headed?"
+            },
+            {
+                id: 4,
+                text: "Does your sense of who you are often change dramatically?"
+            },
+            {
+                id: 5,
+                text: "Have you often done things impulsively that could have placed you in harm's way (e.g., impulsive driving, sexual behavior, substance use, shoplifting, binge eating)?"
+            },
+            {
+                id: 6,
+                text: "Have you tried to hurt yourself physically (e.g., punching yourself, cutting yourself, burning yourself)? Or have you made a suicide attempt?"
+            },
+            {
+                id: 7,
+                text: "Do you have a lot of sudden mood changes?"
+            },
+            {
+                id: 8,
+                text: "Do you often feel empty?"
+            },
+            {
+                id: 9,
+                text: "Do you often have temper outbursts or get so angry that you lose control?"
+            },
+            {
+                id: 10,
+                text: "Have you often felt paranoid or like you were losing touch with reality?"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let answers = new Array(questions.length).fill(null);
+
+        function startTest() {
+            document.getElementById('landing-content').style.display = 'none';
+            document.getElementById('test-section').style.display = 'block';
+            initializeTest();
+        }
+
+        function showLandingPage() {
+            document.getElementById('landing-content').style.display = 'block';
+            document.getElementById('test-section').style.display = 'none';
+            document.getElementById('results').style.display = 'none';
+            resetTest();
+        }
+
+        function initializeTest() {
+            currentQuestion = 0;
+            answers = new Array(questions.length).fill(null);
+            
+            const questionsContainer = document.getElementById('questions-container');
+            questionsContainer.innerHTML = '';
+            
+            questions.forEach((question, index) => {
+                const card = document.createElement('div');
+                card.className = `question-card ${index === 0 ? 'active' : ''}`;
+                card.innerHTML = `
+                    <div class="question-number">Question ${question.id} of ${questions.length}</div>
+                    <div class="question-text">${question.text}</div>
+                    <div class="options">
+                        <button class="option-btn" onclick="answerQuestion(${index}, true)">Yes</button>
+                        <button class="option-btn" onclick="answerQuestion(${index}, false)">No</button>
+                    </div>
+                `;
+                questionsContainer.appendChild(card);
+            });
+            
+            updateProgress();
+        }
+
+        function answerQuestion(index, answer) {
+            answers[index] = answer;
+            updateProgress();
+            
+            if (index < questions.length - 1) {
+                document.querySelectorAll('.question-card').forEach(card => card.classList.remove('active'));
+                document.querySelectorAll('.question-card')[index + 1].classList.add('active');
+                currentQuestion = index + 1;
+            } else {
+                showResults();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.querySelector('.progress').style.width = `${progress}%`;
+        }
+
+        function showResults() {
+            const questionsContainer = document.getElementById('questions-container');
+            const results = document.getElementById('results');
+            const scoreElement = document.getElementById('score');
+            const interpretationElement = document.getElementById('interpretation');
+
+            questionsContainer.style.display = 'none';
+            results.style.display = 'block';
+            document.querySelector('.progress-bar').style.display = 'none';
+
+            scoreElement.textContent = `Score: ${score} out of ${questions.length}`;
+
+            // 根据 MSI-BPD 标准解释结果
+            let interpretation = '';
+            if (score >= 7) {
+                interpretation = `
+                    <div style="background: #FFF3F3; padding: 1rem; border-radius: 8px;">
+                        <h3 style="color: var(--accent-color); margin-bottom: 0.5rem;">Higher Likelihood of BPD Symptoms</h3>
+                        <p>Your responses suggest a higher likelihood of BPD symptoms. It's important to consult with a mental health professional for a thorough evaluation. They can provide proper diagnosis and guidance for treatment if needed.</p>
+                    </div>
+                `;
+            } else if (score >= 4) {
+                interpretation = `
+                    <div style="background: #FFF7E6; padding: 1rem; border-radius: 8px;">
+                        <h3 style="color: #F5A623; margin-bottom: 0.5rem;">Moderate Indication of BPD Symptoms</h3>
+                        <p>Your responses indicate some BPD symptoms. Consider discussing these results with a mental health professional. They can help you better understand your symptoms and recommend appropriate support options.</p>
+                    </div>
+                `;
+            } else {
+                interpretation = `
+                    <div style="background: #F0F8F1; padding: 1rem; border-radius: 8px;">
+                        <h3 style="color: var(--success-color); margin-bottom: 0.5rem;">Lower Indication of BPD Symptoms</h3>
+                        <p>Your responses indicate fewer BPD symptoms. However, if you're experiencing emotional distress, consider speaking with a mental health professional. They can provide support and guidance regardless of diagnosis.</p>
+                    </div>
+                `;
+            }
+
+            interpretationElement.innerHTML = interpretation;
+        }
+
+        function resetTest() {
+            currentQuestion = 0;
+            answers = new Array(questions.length).fill(null);
+            
+            // 重置进度条
+            document.querySelector('.progress').style.width = '0%';
+            document.querySelector('.progress-bar').style.display = 'block';
+            
+            // 重置问题显示
+            const questionsContainer = document.getElementById('questions-container');
+            questionsContainer.style.display = 'block';
+            
+            // 隐藏结果
+            document.getElementById('results').style.display = 'none';
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            showLandingPage();
+        });
+    </script>
+</body>
+</html>
