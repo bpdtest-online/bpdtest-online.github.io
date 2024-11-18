@@ -269,12 +269,150 @@
             height: 100%;
             border-radius: 10px;
         }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: var(--text-color);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+        }
+
+        .test-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .msi-btn, .dsm-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            min-width: 250px;
+        }
+
+        .test-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .test-info {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .msi-btn {
+            background: var(--primary-color);
+        }
+
+        .dsm-btn {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .dsm-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            .test-buttons {
+                flex-direction: column;
+            }
+            
+            .msi-btn, .dsm-btn {
+                width: 100%;
+            }
+        }
+
+        .test-measures {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .measure-card {
+            background: var(--secondary-color);
+            padding: 2rem;
+            border-radius: 10px;
+            height: 100%;
+        }
+
+        .measure-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .measure-card ul {
+            margin: 1rem 0;
+            list-style-position: inside;
+        }
+
+        .measure-note {
+            margin-top: 1rem;
+            font-style: italic;
+            color: var(--light-text);
+        }
     </style>
 </head>
 <body>
     <header>
         <nav class="container">
             <div class="logo" onclick="showLandingPage()">BPDTest.online</div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="dropdown">
+                    <a href="#" class="nav-link">Articles</a>
+                    <div class="dropdown-content">
+                        <a href="what-is-bpd.html">What is BPD?</a>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
 
@@ -283,9 +421,23 @@
             <section class="hero">
                 <div class="container">
                     <h1>Free Online BPD Test</h1>
-                    <p>Take our comprehensive Borderline Personality Disorder (BPD) screening test to better understand your symptoms and mental health</p>
-                    <button class="cta-button" onclick="startTest()">Take the BPD Test Now</button>
+                    <p>Choose from two professional screening tools to better understand your symptoms</p>
+                    <div class="test-buttons">
+                        <button class="cta-button msi-btn" onclick="startMSITest()">
+                            <span class="test-name">Quick Screening Test</span>
+                            <span class="test-info">Based on MSI-BPD (5-10 mins)</span>
+                        </button>
+                        <button class="cta-button dsm-btn" onclick="startDSMTest()">
+                            <span class="test-name">Comprehensive Test</span>
+                            <span class="test-info">Based on DSM-5 (15-20 mins)</span>
+                        </button>
+                    </div>
                 </div>
+            </section>
+
+            <section class="container">
+                <h2>What is BPD?</h2>
+                <p>Borderline Personality Disorder (BPD) is a complex mental health condition characterized by persistent patterns of varying moods, self-image, and behavior. People with BPD often experience intense episodes of anger, depression, and anxiety that can last from a few hours to days. These emotional struggles can significantly impact relationships, self-image, and daily functioning. <a href="what-is-bpd.html" class="learn-more">Learn more about BPD →</a></p>
             </section>
 
             <section class="container">
@@ -328,18 +480,41 @@
             </section>
 
             <section class="container">
-                <h2>What Does the BPD Test Measure?</h2>
-                <p>The test assesses various aspects of personality and behavior patterns commonly associated with BPD:</p>
-                <ul>
-                    <li>Emotional instability and mood swings</li>
-                    <li>Fear of abandonment</li>
-                    <li>Self-image and identity issues</li>
-                    <li>Impulsive behaviors</li>
-                    <li>Thoughts of self-harm</li>
-                    <li>Chronic feelings of emptiness</li>
-                    <li>Anger management</li>
-                    <li>Stress-related symptoms</li>
-                </ul>
+                <h2>What Do Our BPD Tests Measure?</h2>
+                <div class="test-measures">
+                    <div class="measure-card">
+                        <h3>Quick Screening Test (MSI-BPD)</h3>
+                        <p>The McLean Screening Instrument for BPD (MSI-BPD) is a validated screening tool that assesses:</p>
+                        <ul>
+                            <li>Emotional instability and mood swings</li>
+                            <li>Fear of abandonment</li>
+                            <li>Identity disturbance</li>
+                            <li>Impulsive behaviors</li>
+                            <li>Self-harm thoughts and behaviors</li>
+                            <li>Chronic feelings of emptiness</li>
+                            <li>Anger management issues</li>
+                            <li>Stress-related paranoid thoughts</li>
+                        </ul>
+                        <p class="measure-note">This 10-question test provides a quick assessment of BPD symptoms with high sensitivity.</p>
+                    </div>
+
+                    <div class="measure-card">
+                        <h3>Comprehensive Test (DSM-5)</h3>
+                        <p>Based on the diagnostic criteria from DSM-5, this test evaluates nine key areas:</p>
+                        <ul>
+                            <li>Efforts to avoid abandonment</li>
+                            <li>Pattern of unstable relationships</li>
+                            <li>Unstable self-image or sense of self</li>
+                            <li>Dangerous impulsivity (spending, sex, substance use, etc.)</li>
+                            <li>Suicidal behavior or self-injury</li>
+                            <li>Emotional instability and reactivity</li>
+                            <li>Chronic feelings of emptiness</li>
+                            <li>Inappropriate or intense anger</li>
+                            <li>Stress-related paranoia or dissociation</li>
+                        </ul>
+                        <p class="measure-note">This detailed assessment aligns with professional diagnostic criteria for BPD.</p>
+                    </div>
+                </div>
             </section>
         </div>
 
@@ -378,7 +553,8 @@
     </footer>
 
     <script>
-        const questions = [
+        // MSI-BPD 测试题目
+        const msiQuestions = [
             {
                 id: 1,
                 text: "Have you often become frantic when you thought that someone you really cared about was going to leave you?"
@@ -421,26 +597,166 @@
             }
         ];
 
-        let currentQuestion = 0;
-        let answers = new Array(questions.length).fill(null);
+        // DSM-5 测试题目
+        const dsmQuestions = [
+            {
+                id: 1,
+                criterion: "Fear of Abandonment",
+                questions: [
+                    {
+                        id: "1a",
+                        text: "Do you make desperate efforts to avoid feeling abandoned or being abandoned?"
+                    },
+                    {
+                        id: "1b",
+                        text: "Do you feel intense fear or panic when you think someone might leave you?"
+                    },
+                    {
+                        id: "1c",
+                        text: "Do minor separations from important people cause you intense distress?"
+                    }
+                ]
+            },
+            {
+                id: 2,
+                criterion: "Unstable Relationships",
+                questions: [
+                    {
+                        id: "2a",
+                        text: "Do your close relationships tend to be intense and unstable?"
+                    },
+                    {
+                        id: "2b",
+                        text: "Do you tend to alternate between idealizing and devaluing people close to you?"
+                    }
+                ]
+            },
+            {
+                id: 3,
+                criterion: "Identity Disturbance",
+                questions: [
+                    {
+                        id: "3a",
+                        text: "Do you have a persistently unstable sense of who you are?"
+                    },
+                    {
+                        id: "3b",
+                        text: "Does your self-image or sense of self change dramatically?"
+                    }
+                ]
+            },
+            {
+                id: 4,
+                criterion: "Impulsivity",
+                questions: [
+                    {
+                        id: "4a",
+                        text: "Do you engage in at least two potentially self-damaging impulsive behaviors (e.g., spending, sex, substance abuse, reckless driving, binge eating)?"
+                    },
+                    {
+                        id: "4b",
+                        text: "Do you have difficulty controlling these impulses?"
+                    }
+                ]
+            },
+            {
+                id: 5,
+                criterion: "Suicidal Behavior",
+                questions: [
+                    {
+                        id: "5a",
+                        text: "Have you engaged in self-harming behaviors?"
+                    },
+                    {
+                        id: "5b",
+                        text: "Have you had suicidal thoughts or made suicide attempts?"
+                    }
+                ]
+            },
+            {
+                id: 6,
+                criterion: "Affective Instability",
+                questions: [
+                    {
+                        id: "6a",
+                        text: "Do you experience intense mood swings that last from a few hours to a few days?"
+                    },
+                    {
+                        id: "6b",
+                        text: "Do you have difficulty regulating your emotions?"
+                    }
+                ]
+            },
+            {
+                id: 7,
+                criterion: "Chronic Emptiness",
+                questions: [
+                    {
+                        id: "7a",
+                        text: "Do you often feel empty inside?"
+                    },
+                    {
+                        id: "7b",
+                        text: "Do you struggle to find meaning or purpose in your life?"
+                    }
+                ]
+            },
+            {
+                id: 8,
+                criterion: "Inappropriate Anger",
+                questions: [
+                    {
+                        id: "8a",
+                        text: "Do you have difficulty controlling your anger?"
+                    },
+                    {
+                        id: "8b",
+                        text: "Do you frequently experience intense anger or have angry outbursts?"
+                    }
+                ]
+            },
+            {
+                id: 9,
+                criterion: "Dissociation/Paranoia",
+                questions: [
+                    {
+                        id: "9a",
+                        text: "Do you experience periods where you feel disconnected from reality?"
+                    },
+                    {
+                        id: "9b",
+                        text: "Do you become suspicious or paranoid under stress?"
+                    }
+                ]
+            }
+        ];
 
-        function startTest() {
+        let currentQuestion = 0;
+        let answers = [];
+        let currentTest = null;
+        let currentCriterion = 0;
+        let criterionAnswers = {};
+
+        function startMSITest() {
+            currentTest = 'MSI';
+            currentQuestion = 0;
+            answers = new Array(msiQuestions.length).fill(null);
             document.getElementById('landing-content').style.display = 'none';
             document.getElementById('test-section').style.display = 'block';
-            initializeTest();
+            initializeTest(msiQuestions);
         }
 
-        function showLandingPage() {
-            document.getElementById('landing-content').style.display = 'block';
-            document.getElementById('test-section').style.display = 'none';
-            document.getElementById('results').style.display = 'none';
-            resetTest();
-        }
-
-        function initializeTest() {
+        function startDSMTest() {
+            currentTest = 'DSM';
             currentQuestion = 0;
-            answers = new Array(questions.length).fill(null);
-            
+            currentCriterion = 0;
+            criterionAnswers = {};
+            document.getElementById('landing-content').style.display = 'none';
+            document.getElementById('test-section').style.display = 'block';
+            initializeDSMTest();
+        }
+
+        function initializeTest(questions) {
             const questionsContainer = document.getElementById('questions-container');
             questionsContainer.innerHTML = '';
             
@@ -461,11 +777,33 @@
             updateProgress();
         }
 
+        function initializeDSMTest() {
+            const questionsContainer = document.getElementById('questions-container');
+            questionsContainer.innerHTML = '';
+            
+            const criterion = dsmQuestions[currentCriterion];
+            criterion.questions.forEach((question, index) => {
+                const card = document.createElement('div');
+                card.className = `question-card ${index === 0 ? 'active' : ''}`;
+                card.innerHTML = `
+                    <div class="criterion">Criterion ${criterion.id}: ${criterion.criterion}</div>
+                    <div class="question-text">${question.text}</div>
+                    <div class="options">
+                        <button class="option-btn" onclick="answerDSMQuestion('${question.id}', true)">Yes</button>
+                        <button class="option-btn" onclick="answerDSMQuestion('${question.id}', false)">No</button>
+                    </div>
+                `;
+                questionsContainer.appendChild(card);
+            });
+            
+            updateProgress();
+        }
+
         function answerQuestion(index, answer) {
             answers[index] = answer;
             updateProgress();
             
-            if (index < questions.length - 1) {
+            if (index < msiQuestions.length - 1) {
                 document.querySelectorAll('.question-card').forEach(card => card.classList.remove('active'));
                 document.querySelectorAll('.question-card')[index + 1].classList.add('active');
                 currentQuestion = index + 1;
@@ -474,12 +812,73 @@
             }
         }
 
+        function answerDSMQuestion(questionId, answer) {
+            if (!criterionAnswers[currentCriterion]) {
+                criterionAnswers[currentCriterion] = {};
+            }
+            criterionAnswers[currentCriterion][questionId] = answer;
+            
+            const criterion = dsmQuestions[currentCriterion];
+            const allAnswered = criterion.questions.every(q => 
+                criterionAnswers[currentCriterion][q.id] !== undefined
+            );
+            
+            if (allAnswered) {
+                if (currentCriterion < dsmQuestions.length - 1) {
+                    currentCriterion++;
+                    initializeDSMTest();
+                } else {
+                    showDSMResults();
+                }
+            } else {
+                const currentIndex = criterion.questions.findIndex(q => q.id === questionId);
+                document.querySelectorAll('.question-card').forEach(card => card.classList.remove('active'));
+                document.querySelectorAll('.question-card')[currentIndex + 1].classList.add('active');
+            }
+            
+            updateProgress();
+        }
+
         function updateProgress() {
-            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            let progress;
+            if (currentTest === 'MSI') {
+                progress = ((currentQuestion + 1) / msiQuestions.length) * 100;
+            } else {
+                progress = ((currentCriterion * 100) / dsmQuestions.length) + 
+                          (100 / dsmQuestions.length * 
+                           (Object.keys(criterionAnswers[currentCriterion] || {}).length / 
+                            dsmQuestions[currentCriterion].questions.length));
+            }
             document.querySelector('.progress').style.width = `${progress}%`;
         }
 
         function showResults() {
+            const score = answers.filter(answer => answer).length;
+            showResultsCommon(score, 'MSI');
+        }
+
+        function showDSMResults() {
+            let criteriaCount = 0;
+            
+            // 遍历每个标准
+            for (let i = 0; i < dsmQuestions.length; i++) {
+                const criterionResponses = criterionAnswers[i] || {};
+                const criterionQuestions = dsmQuestions[i].questions;
+                
+                // 如果该标准下的任何一个问题回答是，则认为满足该标准
+                const meetsCriterion = criterionQuestions.some(question => 
+                    criterionResponses[question.id] === true
+                );
+                
+                if (meetsCriterion) {
+                    criteriaCount++;
+                }
+            }
+            
+            showResultsCommon(criteriaCount, 'DSM');
+        }
+
+        function showResultsCommon(score, testType) {
             const questionsContainer = document.getElementById('questions-container');
             const results = document.getElementById('results');
             const scoreElement = document.getElementById('score');
@@ -489,53 +888,78 @@
             results.style.display = 'block';
             document.querySelector('.progress-bar').style.display = 'none';
 
-            scoreElement.textContent = `Score: ${score} out of ${questions.length}`;
-
-            // 根据 MSI-BPD 标准解释结果
-            let interpretation = '';
-            if (score >= 7) {
-                interpretation = `
-                    <div style="background: #FFF3F3; padding: 1rem; border-radius: 8px;">
-                        <h3 style="color: var(--accent-color); margin-bottom: 0.5rem;">Higher Likelihood of BPD Symptoms</h3>
-                        <p>Your responses suggest a higher likelihood of BPD symptoms. It's important to consult with a mental health professional for a thorough evaluation. They can provide proper diagnosis and guidance for treatment if needed.</p>
-                    </div>
-                `;
-            } else if (score >= 4) {
-                interpretation = `
-                    <div style="background: #FFF7E6; padding: 1rem; border-radius: 8px;">
-                        <h3 style="color: #F5A623; margin-bottom: 0.5rem;">Moderate Indication of BPD Symptoms</h3>
-                        <p>Your responses indicate some BPD symptoms. Consider discussing these results with a mental health professional. They can help you better understand your symptoms and recommend appropriate support options.</p>
-                    </div>
-                `;
+            if (testType === 'MSI') {
+                scoreElement.textContent = `Score: ${score} out of 10`;
+                if (score >= 7) {
+                    interpretationElement.innerHTML = `
+                        <div style="background: #FFF3F3; padding: 1rem; border-radius: 8px;">
+                            <h3 style="color: var(--accent-color); margin-bottom: 0.5rem;">Higher Likelihood of BPD Symptoms</h3>
+                            <p>Your responses suggest a higher likelihood of BPD symptoms. It's important to consult with a mental health professional for a thorough evaluation.</p>
+                        </div>
+                    `;
+                } else if (score >= 4) {
+                    interpretationElement.innerHTML = `
+                        <div style="background: #FFF7E6; padding: 1rem; border-radius: 8px;">
+                            <h3 style="color: #F5A623; margin-bottom: 0.5rem;">Moderate Indication of BPD Symptoms</h3>
+                            <p>Your responses indicate some BPD symptoms. Consider discussing these results with a mental health professional.</p>
+                        </div>
+                    `;
+                } else {
+                    interpretationElement.innerHTML = `
+                        <div style="background: #F0F8F1; padding: 1rem; border-radius: 8px;">
+                            <h3 style="color: var(--success-color); margin-bottom: 0.5rem;">Lower Indication of BPD Symptoms</h3>
+                            <p>Your responses indicate fewer BPD symptoms. However, if you're experiencing emotional distress, consider speaking with a mental health professional.</p>
+                        </div>
+                    `;
+                }
             } else {
-                interpretation = `
-                    <div style="background: #F0F8F1; padding: 1rem; border-radius: 8px;">
-                        <h3 style="color: var(--success-color); margin-bottom: 0.5rem;">Lower Indication of BPD Symptoms</h3>
-                        <p>Your responses indicate fewer BPD symptoms. However, if you're experiencing emotional distress, consider speaking with a mental health professional. They can provide support and guidance regardless of diagnosis.</p>
-                    </div>
-                `;
+                scoreElement.textContent = `Criteria Met: ${score} out of 9`;
+                if (score >= 5) {
+                    interpretationElement.innerHTML = `
+                        <div style="background: #FFF3F3; padding: 1rem; border-radius: 8px;">
+                            <h3 style="color: var(--accent-color); margin-bottom: 0.5rem;">Significant BPD Symptoms Present</h3>
+                            <p>Your responses meet the diagnostic threshold for BPD according to DSM-5 criteria. It's important to consult with a mental health professional for a thorough evaluation.</p>
+                        </div>
+                    `;
+                } else if (score >= 3) {
+                    interpretationElement.innerHTML = `
+                        <div style="background: #FFF7E6; padding: 1rem; border-radius: 8px;">
+                            <h3 style="color: #F5A623; margin-bottom: 0.5rem;">Some BPD Traits Present</h3>
+                            <p>While you don't meet the full diagnostic criteria for BPD, your responses indicate some BPD traits. Consider discussing these results with a mental health professional.</p>
+                        </div>
+                    `;
+                } else {
+                    interpretationElement.innerHTML = `
+                        <div style="background: #F0F8F1; padding: 1rem; border-radius: 8px;">
+                            <h3 style="color: var(--success-color); margin-bottom: 0.5rem;">Few BPD Traits Present</h3>
+                            <p>Your responses indicate few BPD traits. However, if you're experiencing emotional distress, consider speaking with a mental health professional.</p>
+                        </div>
+                    `;
+                }
             }
+        }
 
-            interpretationElement.innerHTML = interpretation;
+        function showLandingPage() {
+            document.getElementById('landing-content').style.display = 'block';
+            document.getElementById('test-section').style.display = 'none';
+            document.getElementById('results').style.display = 'none';
+            resetTest();
         }
 
         function resetTest() {
             currentQuestion = 0;
-            answers = new Array(questions.length).fill(null);
+            answers = [];
+            currentTest = null;
+            currentCriterion = 0;
+            criterionAnswers = {};
             
-            // 重置进度条
             document.querySelector('.progress').style.width = '0%';
             document.querySelector('.progress-bar').style.display = 'block';
             
-            // 重置问题显示
             const questionsContainer = document.getElementById('questions-container');
             questionsContainer.style.display = 'block';
-            
-            // 隐藏结果
-            document.getElementById('results').style.display = 'none';
         }
 
-        // 页面加载完成后初始化
         document.addEventListener('DOMContentLoaded', function() {
             showLandingPage();
         });
